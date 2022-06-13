@@ -72,6 +72,6 @@ with dataset:
         width=400,
         reverse=False,
         loop=True,
-        quality="high",  # medium ; high
+        quality="low",  # medium ; high
         key=None,
     )

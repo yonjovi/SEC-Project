@@ -6,7 +6,8 @@ import requests
 import hashlib
 import plotly.graph_objs as go
 import random
-from streamlit_lottie import st_lottie
+from streamlit_lottie import st_lottie, st_lottie_spinner
+import time
 
 
 def load_lottieurl(url: str):
@@ -37,12 +38,15 @@ class PasswordAnalytics:
     def syllable_counter(word):
         a = pyphen.Pyphen(lang='en')
         syllables_str = a.inserted(word)
-        split_syl = syllables_str.split("-")
         nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-
+        if syllables_str.isdigit():
+            df.loc["Pass"]["num_syllables"] = 0
+        else:
+            split_syl = syllables_str.split("-")
+            df.loc["Pass"]["num_syllables"] = len(split_syl)
         # print("Syllable count: ", len(split_syl))
-        print("Syllables: ", split_syl)
-        df.loc["Pass"]["num_syllables"] = len(split_syl)
+        # print("Syllables: ", split_syl)
+
         # for i in split_syl:
         #     for num in nums:
         #         if num in num_str:
@@ -152,14 +156,14 @@ class PasswordAnalytics:
                 width=250,
                 reverse=False,
                 loop=True,
-                quality="high",  # medium ; high
+                quality="low",  # medium ; high
                 key=None,
             )
             print(pwned_dict[sha_postfix])
             print('')
         else:
             # st.balloons()
-            st.write("Password is safe!!!")
+            st.write("Password is safe 😸")
             lottie_hello = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_ox9RZA.json")
             st_lottie(
                 lottie_hello,
@@ -168,7 +172,7 @@ class PasswordAnalytics:
                 width=200,
                 reverse=False,
                 loop=True,
-                quality="high",  # medium ; high
+                quality="low",  # medium ; high
                 key=None,
             )
             print("Password is safe!")
@@ -250,18 +254,22 @@ with header:
 with dataset:
     st.header('Password Analysis')
     st.text("Analyse any password! Enter one below...")
+    lottie_spinner_url = "https://assets5.lottiefiles.com/packages/lf20_yha8dld0.json"
+    lottie_spinner_json = load_lottieurl(lottie_spinner_url)
     password = st.text_input('Enter a password: ', type="password")
+    if password:
+        with st_lottie_spinner(lottie_spinner_json, height=500, width=500):
+            time.sleep(1)
+            PasswordAnalytics.pass_length(password)
+            PasswordAnalytics.lower_counter(password)
+            PasswordAnalytics.upper_counter(password)
+            PasswordAnalytics.num_counter(password)
+            PasswordAnalytics.character_counter(password)
+            PasswordAnalytics.syllable_counter(password)
+            PasswordAnalytics.vowel_counter(password)
+            PasswordAnalytics.special_char_counter(password)
+            PasswordAnalytics.is_pass_safe(password)
 
-    PasswordAnalytics.pass_length(password)
-    PasswordAnalytics.lower_counter(password)
-    PasswordAnalytics.upper_counter(password)
-    PasswordAnalytics.num_counter(password)
-    PasswordAnalytics.character_counter(password)
-    PasswordAnalytics.syllable_counter(password)
-    PasswordAnalytics.vowel_counter(password)
-    PasswordAnalytics.special_char_counter(password)
-    PasswordAnalytics.is_pass_safe(password)
-
-    PlotAnalytics.group_bar()
-    st.write("")
-    st.write("")
+            PlotAnalytics.group_bar()
+            st.write("")
+            st.write("")

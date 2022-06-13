@@ -36,6 +36,6 @@ with header:
         width=200,
         reverse=False,
         loop=True,
-        quality="high", # medium ; high
+        quality="low", # medium ; high
         key=None,
     )

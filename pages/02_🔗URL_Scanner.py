@@ -104,7 +104,7 @@ def analyse_url(url):
             width=400,
             reverse=False,
             loop=True,
-            quality="high",  # medium ; high
+            quality="low",  # medium ; high
             key=None,
         )
     elif malicious_sites == 1:
@@ -117,7 +117,7 @@ def analyse_url(url):
             width=443,
             reverse=False,
             loop=True,
-            quality="high",  # medium ; high
+            quality="low",  # medium ; high
             key=None,
         )
     elif 2 <= malicious_sites < 5:
@@ -130,7 +130,7 @@ def analyse_url(url):
             width=400,
             reverse=False,
             loop=True,
-            quality="high",  # medium ; high
+            quality="low",  # medium ; high
             key=None,
         )
     elif 5 <= malicious_sites < 10:
@@ -143,7 +143,7 @@ def analyse_url(url):
             width=400,
             reverse=False,
             loop=True,
-            quality="high",  # medium ; high
+            quality="low",  # medium ; high
             key=None,
         )
     elif malicious_sites >= 10:
@@ -156,7 +156,7 @@ def analyse_url(url):
             width=400,
             reverse=False,
             loop=True,
-            quality="high",  # medium ; high
+            quality="low",  # medium ; high
             key=None,
         )
 
@@ -196,7 +196,7 @@ with dataset:
                     width=400,
                     reverse=False,
                     loop=True,
-                    quality="high",  # medium ; high
+                    quality="low",  # medium ; high
                     key=None,
                 )
             except KeyError:
@@ -209,7 +209,7 @@ with dataset:
                     width=400,
                     reverse=False,
                     loop=True,
-                    quality="high",  # medium ; high
+                    quality="low",  # medium ; high
                     key=None,
                 )
             except TypeError:
@@ -222,7 +222,7 @@ with dataset:
                     width=400,
                     reverse=False,
                     loop=True,
-                    quality="high",  # medium ; high
+                    quality="low",  # medium ; high
                     key=None,
                 )
 
