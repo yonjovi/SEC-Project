@@ -5,7 +5,6 @@ from string import punctuation
 import requests
 import hashlib
 import plotly.graph_objs as go
-import random
 from streamlit_lottie import st_lottie, st_lottie_spinner
 import time
 
@@ -44,16 +43,6 @@ class PasswordAnalytics:
         else:
             split_syl = syllables_str.split("-")
             df.loc["Pass"]["num_syllables"] = len(split_syl)
-        # print("Syllable count: ", len(split_syl))
-        # print("Syllables: ", split_syl)
-
-        # for i in split_syl:
-        #     for num in nums:
-        #         if num in num_str:
-        #             split_syl.remove(num)
-        #             df.loc["Pass"]["num_syllables"] = len(split_syl)
-        # # print(df.loc["Pass"]["num_syllables"])
-        # df.to_csv(f'{word}_analytics.csv')
         df.to_csv('./password_analyticz.csv')
 
     def special_char_counter(word):

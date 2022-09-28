@@ -2,21 +2,16 @@ import requests
 import time
 import json
 import pandas as pd
-from plotly.offline import plot
-import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
 from streamlit_lottie import st_lottie_spinner, st_lottie
 
+API_KEY = st.secrets["API_KEY"]
+
 def analyse_url(url):
     df = pd.read_csv("./url_results.csv")
 
-    with open("./api_key.txt") as api_text:
-        API_KEY = api_text.read()
-    #
     api_url = 'https://www.virustotal.com/vtapi/v2/url/scan'
-
-    # scan_url = input("Please enter a URL to scan:  ")
 
     params = dict(apikey=API_KEY, url=url)
 

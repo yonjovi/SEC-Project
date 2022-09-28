@@ -1,11 +1,5 @@
 import streamlit as st
-import pandas as pd
-import pyphen
-from string import punctuation
 import requests
-import hashlib
-import plotly.graph_objs as go
-import random
 from streamlit_lottie import st_lottie
 
 def load_lottieurl(url: str):
